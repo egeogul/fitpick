@@ -33,7 +33,8 @@ SECRET_KEY = 'django-insecure-y%*eu=a+6b^2=q7k=%v5*$h$sh-60^@5@cfd(auvw3yrhnsw*y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fitpick-lx1j.onrender.com']
+
 
 
 # Application definition
