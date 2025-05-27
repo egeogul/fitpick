@@ -1,0 +1,25 @@
+<!-- store/templates/store/login.html -->
+{% extends "store/base.html" %}
+
+{% block title %}Login - FitPick{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="col-md-4">
+        <h2 class="mb-4 text-center">Login to FitPick</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Email</label>
+                <input type="email" name="email" autofocus required id="id_email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Password</label>
+                <input type="password" name="password" required id="id_password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <p class="mt-3 text-center">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

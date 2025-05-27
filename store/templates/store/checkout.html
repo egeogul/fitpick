@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Checkout - FitPick{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Checkout</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="delivery_address" class="form-label">Delivery Address</label>
+            <textarea name="delivery_address" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="card_number" class="form-label">Card Number</label>
+            <input type="text" name="card_number" class="form-control" required placeholder="1234 5678 9012 3456">
+        </div>
+
+        <h4 class="mt-4">Order Summary</h4>
+        <ul class="list-group mb-3">
+            {% for item in cart_items %}
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    {{ item.product.name }} ({{ item.size }}) × {{ item.quantity }}
+                </div>
+                <span>${{ item.total_price }}</span>
+            </li>
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between fw-bold">
+                <span>Total</span>
+                <span>${{ total }}</span>
+            </li>
+        </ul>
+
+        <button type="submit" class="btn btn-success w-100">Confirm and Pay</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'store/base.html' %}
+{% block title %}Top Sellers - FitPick{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>🔥 Top 10 Bestselling Products (Past Week)</h2>
+    <div class="row">
+        {% for item in product_data %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <a href="{% url 'product_detail' item.product.id %}">
+                    <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">${{ item.product.price }}</p>
+                    <p class="text-muted">Sold: {{ item.total_sold }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No top-selling products in the last 7 days.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

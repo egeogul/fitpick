@@ -1,0 +1,46 @@
+{% extends 'store/base.html' %}
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">👤 Your Profile</h2>
+
+    <form method="post" class="card p-4 mb-4">
+        {% csrf_token %}
+        <h5 class="mb-3">Edit Info</h5>
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            {{ user_form.first_name }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            {{ user_form.last_name }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            {{ user_form.email }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            {{ profile_form.phone_number }}
+        </div>
+        <button type="submit" class="btn btn-success">Update Profile</button>
+    </form>
+
+    <h3 class="mb-3">🧾 Your Orders</h3>
+    {% if orders %}
+        <ul class="list-group">
+            {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Order #{{ order.id }}</strong><br>
+                {{ order.created_at|date:"Y-m-d H:i" }}<br>
+                <strong>Total:</strong> ${{ order.total }}<br>
+                <strong>Address:</strong> {{ order.delivery_address }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no past orders.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}FitPick Home{% endblock %}
+
+{% block content %}
+
+<!-- Logo Section -->
+<div style="background-color: #1e2c22; color: white; padding: 40px 0;" class="text-center">
+    <img src="{% static 'store/images/fitpick_logo.png' %}" alt="FitPick Logo" style="max-height: 100px;">
+    <h1 class="mt-3">Welcome to FitPick</h1>
+</div>
+
+
+<!-- Hot Items -->
+<div class="container mt-5">
+    <h2 class="mb-4">🔥 Hot Items</h2>
+    <div class="row">
+        {% for item in bestsellers %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <a href="{% url 'product_detail' item.product.id %}">
+                    <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">${{ item.product.price }}</p>
+                    <p class="text-muted">Sold: {{ item.total_sold }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Topwear -->
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>👕 Topwear</h2>
+        <a href="/topwear/" class="btn btn-dark">See More</a>
+    </div>
+    <div class="row">
+        {% for product in topwear %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Bottomwear -->
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>👖 Bottomwear</h2>
+        <a href="/bottomwear/" class="btn btn-dark">See More</a>
+    </div>
+    <div class="row">
+        {% for product in bottomwear %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Shoes -->
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>👟 Shoes</h2>
+        <a href="/shoes/" class="btn btn-dark">See More</a>
+    </div>
+    <div class="row">
+        {% for product in shoes %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Accessories -->
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>👜 Accessories</h2>
+        <a href="/accessories/" class="btn btn-dark">See More</a>
+    </div>
+    <div class="row">
+        {% for product in accessories %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" class="card-img-top img-fluid" style="height: 180px; object-fit: cover;" alt="{{ product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

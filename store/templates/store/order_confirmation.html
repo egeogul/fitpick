@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Order Confirmation - FitPick{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>✅ Thank you for your order!</h2>
+    <p><strong>Delivery Address:</strong> {{ order.delivery_address }}</p>
+    <p><strong>Total Paid:</strong> ${{ order.total_price }}</p>
+
+    <h4 class="mt-4">Your Items:</h4>
+    <div class="row">
+        {% for item in order_items %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 text-center">
+                <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p>Size: {{ item.size }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price: ${{ item.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
